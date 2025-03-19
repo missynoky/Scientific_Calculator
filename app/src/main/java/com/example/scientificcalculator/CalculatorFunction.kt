@@ -20,7 +20,6 @@ enum class CalculatorFunction(
     POWER(string = "^"),
     ROOT(string = "√"),
     LOG(string = "log"),
-    FACTORIAL(string = "!"),
 
     EQUALS(string = "="),
     CLEAR(string = "C"),
@@ -32,5 +31,4 @@ enum class CalculatorFunction(
     SIN(string = "sin"),
     COS(string = "cos"),
     TAN(string = "tg"),
-    CTG(string = "ctg"),
 }

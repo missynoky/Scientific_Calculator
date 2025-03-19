@@ -1,10 +1,12 @@
 package com.example.scientificcalculator
 
 import CalculatorFunction
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -39,7 +41,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.style.TextOverflow
+import java.util.Stack
+import kotlin.math.PI
+import kotlin.math.cos
+import kotlin.math.ln
+import kotlin.math.log10
 import kotlin.math.max
+import kotlin.math.pow
+import kotlin.math.sin
+import kotlin.math.sqrt
+import kotlin.math.tan
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +67,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 
 @Composable
 fun CalculatorButton(
@@ -113,8 +125,8 @@ fun CalculatorScreen(
         result += function.number?.toString() ?: function.string.orEmpty()
     }
 
-    val row1 = listOf(CalculatorFunction.SIN, CalculatorFunction.COS, CalculatorFunction.TAN, CalculatorFunction.CTG)
-    val row2 = listOf(CalculatorFunction.POWER, CalculatorFunction.ROOT, CalculatorFunction.LOG, CalculatorFunction.FACTORIAL)
+    val row1 = listOf(CalculatorFunction.SIN, CalculatorFunction.COS, CalculatorFunction.TAN)
+    val row2 = listOf(CalculatorFunction.POWER, CalculatorFunction.ROOT, CalculatorFunction.LOG)
     val row3 = listOf(CalculatorFunction.CLEAR, CalculatorFunction.BRACKETS1, CalculatorFunction.BRACKETS2, CalculatorFunction.DIVIDE)
     val row4 = listOf(CalculatorFunction.ONE, CalculatorFunction.TWO, CalculatorFunction.THREE, CalculatorFunction.MULTIPLY)
     val row5 = listOf(CalculatorFunction.FOUR, CalculatorFunction.FIVE, CalculatorFunction.SIX, CalculatorFunction.MINUS)
@@ -131,7 +143,7 @@ fun CalculatorScreen(
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter),
             horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
+        ) {
             Text(
                 text = result,
                 fontSize = 40.sp,
@@ -157,9 +169,10 @@ fun CalculatorScreen(
 @Composable
 fun ScreenPreview() {
     ScientificCalculatorTheme {
-        CalculatorScreen(result = "15506600606060666060604050181705680650080")
+        CalculatorScreen(result = "10")
     }
 }
+
 
 //@Preview
 //@Composable
